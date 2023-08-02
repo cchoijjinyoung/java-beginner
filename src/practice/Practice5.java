@@ -2,7 +2,12 @@ package practice;
 
 public class Practice5 {
     public static int solution(int[] height) {
-        return 0;
+        int answer = 0;
+        int lt = height[0];
+        int rt = height[height.length - 1];
+
+//        while ()
+        return answer;
     }
 
     public static void main(String[] args) {
