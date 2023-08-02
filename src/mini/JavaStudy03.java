@@ -2,6 +2,12 @@ package mini;
 
 import java.util.Scanner;
 
+/**
+ * 최진영 (cgy7127)
+ * 미니과제2 : 놀이동산 입장권 계산 프로그램
+ * 작성일 : 2023-08-02
+ */
+
 public class JavaStudy03 {
     public static void main(String[] args) {
         int price = 10000;
