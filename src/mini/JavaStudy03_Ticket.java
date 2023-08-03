@@ -8,7 +8,7 @@ import java.util.Scanner;
  * 작성일 : 2023-08-02
  */
 
-public class JavaStudy03_ver2 {
+public class JavaStudy03_Ticket {
 
     static class Ticket {
         private Discount discount;
