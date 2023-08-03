@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * Java_13_2 파일 입출력 연습
+ * Java_13_2 파일 입출력 연습 + Scanner
  */
 
 public class Practice_IO_Scanner {
