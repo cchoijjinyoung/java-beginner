@@ -15,16 +15,16 @@ public class JavaStudy03 {
 
         System.out.println("[입장권 계산]");
         System.out.print("나이를 입력해 주세요.(숫자):");
-        int age = Integer.parseInt(sc.nextLine());
+        int age = sc.nextInt();
 
         System.out.print("입장시간을 입력해 주세요.(숫자입력):");
-        int enterTime = Integer.parseInt(sc.nextLine());
+        int enterTime = sc.nextInt();
 
         System.out.print("국가유공자 여부를 입력해 주세요.(y/n):");
-        String merit = sc.nextLine();
+        String merit = sc.next();
 
         System.out.print("복지카드 여부를 입력해 주세요.(y/n):");
-        String card = sc.nextLine();
+        String card = sc.next();
 
         if (age < 3) {
             price = 0;
