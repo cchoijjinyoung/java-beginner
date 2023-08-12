@@ -10,7 +10,7 @@ public class TariffTable {
             0, 12000000, 46000000, 88000000, 150000000, 300000000, 500000000, 1000000000
     };
 
-    public static final long[] TARIFF = new long[]{
+    public static final int[] TARIFF = new int[]{
             6, 15, 24, 35, 38, 40, 42, 45
     };
 

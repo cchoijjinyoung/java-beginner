@@ -2,7 +2,7 @@ package mini.tax;
 
 public class TaxCalculateProgram {
     private long[] taxBaseDiffs;
-    private long taxByTeriff = 0;
+    private long taxByTariff = 0;
     private long taxByProgressiveDeduction = 0;
 
     public TaxCalculateProgram() {
@@ -15,7 +15,6 @@ public class TaxCalculateProgram {
     }
 
     public void calculate(long salary) {
-        taxByTeriff = 0;
         for (int i = TariffTable.TAX_BASE.length - 1; i >= 0; i--) {
             if (salary > TariffTable.TAX_BASE[i]) {
                 taxByProgressiveDeduction = salary * TariffTable.TARIFF[i] / 100 - TariffTable.PROGRESSIVE_DEDUCTION[i];
@@ -24,10 +23,10 @@ public class TaxCalculateProgram {
 
                 for (int j = 0; j < i; j++) {
                     long sectionTax = taxBaseDiffs[j] * TariffTable.TARIFF[j] / 100;
-                    taxByTeriff += sectionTax;
+                    taxByTariff += sectionTax;
                     System.out.printf("%10d * %2d%% =\t%10d\n", taxBaseDiffs[j], TariffTable.TARIFF[j], sectionTax);
                 }
-                taxByTeriff += laseSetionTax;
+                taxByTariff += laseSetionTax;
                 System.out.printf("%10d * %2d%% =\t%10d\n", lastSection, TariffTable.TARIFF[i], laseSetionTax);
                 break;
             }
@@ -35,7 +34,7 @@ public class TaxCalculateProgram {
     }
 
     public void printByTariff() {
-        System.out.printf("[세율에 의한 세금]:\t\t%10d", taxByTeriff);
+        System.out.printf("[세율에 의한 세금]:\t\t%10d", taxByTariff);
     }
 
     public void printByProgressiveDeduction() {
