@@ -2,8 +2,8 @@ package study.prgrmrs.test.Test_02_5;
 
 public class Exam01 {
     public static void main(String[] args) {
-        String sentence = "bbb bbb bbb";
-        String word = "bbb";
+        String sentence = "Hello every World";
+        String word = "";
         int answer = 0;
         int cnt = 0;
         boolean success = false;
@@ -17,7 +17,9 @@ public class Exam01 {
             }
             cnt++;
         }
-        if (success == false) answer = -1;
+        if (success == false || word.length() == 0) {
+            answer = -1;
+        }
         System.out.println(answer);
     }
 }
