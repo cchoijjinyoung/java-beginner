@@ -9,10 +9,10 @@ public class Exam04 {
         int answer = 0;
         long sum = 0;
         long pow = 1;
-        int n = 1000000;
+        int n = 5;
         for (int i = 0; i < n; i++) {
-            sum = (sum + pow) % divide;
             pow = (pow * 2) % divide;
+            sum = (sum + pow) % divide;
         }
         answer = (int) sum;
         System.out.println(answer);
