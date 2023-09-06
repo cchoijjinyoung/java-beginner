@@ -5,8 +5,8 @@ import java.util.*;
 public class month01 {
     static Point hPoint;
     static Point[] kPoint = new Point[2];
-    static int[] kX = {2, 2, 1, 1, -2, -2, -1, -1};
-    static int[] kY = {-1, 1, -2, 2, -1, 1, -2, 2};
+    static int[] kX = {2, 2, 1, 1, -2, -2, -1, -1, 0};
+    static int[] kY = {-1, 1, -2, 2, -1, 1, -2, 2, 0};
     static int[] dX = {1, 0, -1, 0};
     static int[] dY = {0, -1, 0, 1};
     static List<Integer> mins = new ArrayList<>();
@@ -45,21 +45,21 @@ public class month01 {
 
             // 8방향 move
             for (int i = 0; i < 8; i++) {
-                String[][] tmp = board.clone();
-                int[][] dp = new int[tmp.length][tmp[0].length];
-                boolean[][] visited = new boolean[tmp.length][tmp[0].length];
+                int[][] dp = new int[board.length][board[0].length];
+                boolean[][] visited = new boolean[board.length][board[0].length];
 
                 int nextKX = curKX + kX[i];
                 int nextKY = curKY + kY[i];
 
                 // 움직인 곳이 밖이거나, H면 안된다.
-                if (nextKX < 0 || nextKY < 0 || nextKX >= tmp.length || nextKY >= tmp[0].length || tmp[nextKX][nextKY].equals("H") || tmp[nextKX][nextKY].equals("X")) {
+                if (nextKX < 0 || nextKY < 0 || nextKX >= board.length || nextKY >= board[0].length || board[nextKX][nextKY].equals("H") || board[nextKX][nextKY].equals("X")) {
                     continue;
                 }
                 int min = Integer.MAX_VALUE;
                 // 적군이거나 빈 공간에 도착했으면
-                tmp[nextKX][nextKY] = "K";
-                tmp[curKX][curKY] = "B";
+                String tmp = board[nextKX][nextKY];
+                board[nextKX][nextKY] = "K";
+                board[curKX][curKY] = "B";
 
                 // H부터 시작해서 E를 만나는 거리 계산
                 q.offer(hPoint);
@@ -73,8 +73,8 @@ public class month01 {
                         int nextY = cur.y + dY[j];
 
                         // 밖을 나가거나 벽, 기사, 방문했으면 안됨
-                        if (nextX < 0 || nextY < 0 || nextX >= tmp.length || nextY >= tmp[0].length
-                                || tmp[nextX][nextY].equals("X") || tmp[nextX][nextY].equals("K")
+                        if (nextX < 0 || nextY < 0 || nextX >= board.length || nextY >= board[0].length
+                                || board[nextX][nextY].equals("X") || board[nextX][nextY].equals("K")
                                 || visited[nextX][nextY]) {
                             continue;
                         }
@@ -84,7 +84,7 @@ public class month01 {
                         q.offer(next);
                         visited[nextX][nextY] = true;
                         dp[nextX][nextY] = dp[cur.x][cur.y] + 1;
-                        if (tmp[nextX][nextY].equals("E")) {
+                        if (board[nextX][nextY].equals("E")) {
                             if (min > dp[nextX][nextY]) {
                                 min = dp[nextX][nextY];
                             }
@@ -92,6 +92,8 @@ public class month01 {
                     }
                 }
                 mins.add(min);
+                board[nextKX][nextKY] = tmp;
+                board[curKX][curKY] = "K";
             }
         }
         Collections.sort(mins, (x, y) -> y - x);
