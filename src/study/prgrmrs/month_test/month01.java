@@ -37,7 +37,7 @@ public class month01 {
             }
         }
 
-        System.out.println(hPoint);
+        System.out.println("hPoint = " + hPoint);
 
         for (Point curK : kPoint) {
             int curKX = curK.x;
@@ -51,17 +51,20 @@ public class month01 {
                 int nextKX = curKX + kX[i];
                 int nextKY = curKY + kY[i];
 
-                // 움직인 곳이 밖이거나, H면 안된다.
+                // K가 움직인 좌표 : 밖 || H || X면 안된다.
                 if (nextKX < 0 || nextKY < 0 || nextKX >= board.length || nextKY >= board[0].length || board[nextKX][nextKY].equals("H") || board[nextKX][nextKY].equals("X")) {
                     continue;
                 }
                 int min = Integer.MAX_VALUE;
+
                 // 적군이거나 빈 공간에 도착했으면
+                // 다음 좌표를 tmp 변수에 저장한 뒤, K로 변경한다.
+                // 이번 방향이 끝난 뒤에 원래 board상태로 되돌리기 위함이다.
                 String tmp = board[nextKX][nextKY];
                 board[nextKX][nextKY] = "K";
                 board[curKX][curKY] = "B";
 
-                // H부터 시작해서 E를 만나는 거리 계산
+                // H좌표부터 0으로 시작해서 E까지의 거리 계산
                 q.offer(hPoint);
                 visited[hPoint.x][hPoint.y] = true;
                 dp[hPoint.x][hPoint.y] = 0;
@@ -72,7 +75,7 @@ public class month01 {
                         int nextX = cur.x + dX[j];
                         int nextY = cur.y + dY[j];
 
-                        // 밖을 나가거나 벽, 기사, 방문했으면 안됨
+                        // H가 움직인 좌표 : 밖 || 벽 || 기사 || visited면 안됨
                         if (nextX < 0 || nextY < 0 || nextX >= board.length || nextY >= board[0].length
                                 || board[nextX][nextY].equals("X") || board[nextX][nextY].equals("K")
                                 || visited[nextX][nextY]) {
@@ -91,17 +94,19 @@ public class month01 {
                         }
                     }
                 }
+                // 이 번 사이클의 가장 가까운 적의 거리를 mins배열에 담는다.
                 mins.add(min);
+                // board를 원래 상태로 되돌려놓는다.(K 원상복귀, (nextKX, nextKY) 좌표에 원래값 넣기)
                 board[nextKX][nextKY] = tmp;
                 board[curKX][curKY] = "K";
             }
         }
+        // 모든 방향을 탐색했으면 그 중 가장 거리가 먼 min을 answer에 넣어줄 것이다.
         Collections.sort(mins, (x, y) -> y - x);
-        answer = mins.get(0);
-        if (answer == Integer.MAX_VALUE) {
-            System.out.println(answer);
-            return 0;
-        }
+
+        // min이 MAX_VALUE면 H와 E가 만난 적 없단 뜻이므로 0을 반환.
+        answer = (mins.get(0) == Integer.MAX_VALUE) ? 0 : mins.get(0);
+
         System.out.println(answer);
         return answer;
     }

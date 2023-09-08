@@ -7,6 +7,7 @@ public class Test_03_4_1 {
 
     public static int solution(int[] arr) {
         int answer = 0;
+
         return answer;
     }
 }
