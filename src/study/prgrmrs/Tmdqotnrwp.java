@@ -6,15 +6,16 @@ public class Tmdqotnrwp {
 
     public static void main(String[] args) {
         SubClass subClass = new SubClass();
-        subClass.practice1();
-        subClass.practice2();
-        subClass.practice3();
-        subClass.practice4();
-        subClass.practice5();
-        subClass.practice6();
-        subClass.practice7();
-        subClass.practice8();
-        subClass.practice9();
+//        subClass.practice1();
+//        subClass.practice2();
+//        subClass.practice3();
+//        subClass.practice4();
+//        subClass.practice5();
+//        subClass.practice6();
+//        subClass.practice7();
+//        subClass.practice8();
+//        subClass.practice9();
+        subClass.practice10();
 
     }
 
@@ -45,12 +46,10 @@ public class Tmdqotnrwp {
 
         public void practice3() {
             int[][] arr = new int[5][5];
-            int num = 0;
-            for (int i = arr.length - 1; i >= 0; i--) {
-                for (int j = arr[i].length - 1; j >= 0; j--) {
-                    num = i * arr.length + j + 1;
-                    arr[i][j] = num;
-                    System.out.print(String.format("%3d ", arr[i][j]));
+            for (int i = 0; i < arr.length; i++) {
+                for (int j = 0; j < arr[i].length; j++) {
+                    arr[i][j] = arr.length * (arr.length - i) - j;
+                    System.out.printf("%3d", arr[i][j]);
                 }
                 System.out.println();
             }
@@ -103,7 +102,6 @@ public class Tmdqotnrwp {
                 System.out.println();
             }
         }
-
         public void practice6() {
             String[][] strArr = new String[][]{
                     {"이", "까", "왔", "앞", "힘"},
@@ -151,6 +149,7 @@ public class Tmdqotnrwp {
             StringBuilder firstSb = new StringBuilder();
             firstSb.append("== 1분단 ==\n");
 
+
             String[][] secondGroup = new String[3][2];
             StringBuilder secondSb = new StringBuilder();
             secondSb.append("== 2분단 ==\n");
@@ -159,9 +158,10 @@ public class Tmdqotnrwp {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 2; j++) {
                     firstGroup[i][j] = students[index];
-                    firstSb.append(firstGroup[i][j] + "\t");
+                    firstSb.append(firstGroup[i][j]).append("\t");
+
                     secondGroup[i][j] = students[index + 6];
-                    secondSb.append(secondGroup[i][j] + "\t");
+                    secondSb.append(secondGroup[i][j]).append("\t");
                     index++;
                 }
                 firstSb.append("\n");
@@ -213,7 +213,7 @@ public class Tmdqotnrwp {
                 for (int j = 0; j < groups[i].length; j++) {
                     for (int k = 0; k < groups[i][j].length; k++) {
                         if (target.equals(groups[i][j][k])) {
-                            sb.append(i + 1 + "문단 ");
+                            sb.append(i + 1 + "분단 ");
                             switch (j) {
                                 case 0:
                                     sb.append("첫 번째 줄 ");
@@ -235,6 +235,23 @@ public class Tmdqotnrwp {
                 }
             }
             System.out.println(sb.toString());
+        }
+
+        public static void practice10() {
+            int[][] arr = new int[4][4];
+            for (int i = 0; i < arr.length; i++) {
+                for (int j = 0; j < arr[i].length; j++) {
+                    if (i < arr.length - 1 && j < arr[i].length - 1) {
+                        arr[i][j] = (int)(Math.random() * 10) + 1;
+                        arr[arr.length - 1][j] += arr[i][j];
+                        arr[i][arr[i].length - 1] += arr[i][j];
+                        arr[arr.length - 1][arr[i].length - 1] += 2 * arr[i][j];
+                    }
+                    System.out.printf("%4d", arr[i][j]);
+                }
+                System.out.println();
+
+            }
         }
     }
 }
