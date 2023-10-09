@@ -30,7 +30,7 @@ public class Two {
             }
             int maxLength = Math.max(this.value.length(), anotherNumber.value.length());
             for (int i = length + 1; i < maxLength; i++) {
-                
+
             }
             return 0;
         }
